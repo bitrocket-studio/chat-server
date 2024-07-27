@@ -1,0 +1,9 @@
+.github
+package.json
+package-lock.json
+README.md
+node_modules/
+public/
+src/vite-env.d.ts
+docs/
+.prettierrc
