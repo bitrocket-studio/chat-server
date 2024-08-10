@@ -15,9 +15,9 @@ export const serviceMessageList = async (id_room: Room['id']) => {
   }
 };
 
-export const serviceMessageCreate = async ({ id_room, content, username }: ParamsApiMessageCreate) => {
+export const serviceMessageCreate = async ({ id_room, content, sid }: ParamsApiMessageCreate) => {
   try {
-    SchemaParamsApiMessageCreate.parse({ id_room, content, username });
+    SchemaParamsApiMessageCreate.parse({ id_room, content, sid });
     // const response = await client.query<ModelMessage>(
     //   `INSERT INTO messages (content, username, id_room) VALUES ($1, $2, $3) RETURNING *`,
     //   [content, username, id_room],

@@ -1,16 +1,13 @@
 import { Request, Response } from 'express';
 import { serviceRoomCreate, serviceRoomDelete, serviceRoomList } from './rooms.service';
-import { User } from '../user/user.entity';
 
 export const controllerRoomCreate = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { username } = req.body as { username: User['username'] };
-    if (!username) {
-      res.status(400).json({ error: 'Missing user' });
-      return;
+    if (!req.oidc.isAuthenticated()) res.status(401).json({ error: 'Unauthorized' });
+    else {
+      const room = await serviceRoomCreate(req.oidc.user.sid);
+      res.status(201).json(room);
     }
-    const room = await serviceRoomCreate(username);
-    res.status(201).json(room);
   } catch (error) {
     console.error('Database error:', error);
     res.status(500).json({ error: 'Internal Server Error' });

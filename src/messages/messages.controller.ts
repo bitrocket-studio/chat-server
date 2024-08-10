@@ -13,10 +13,10 @@ export const controllerMessageList = async (req: Request, res: Response) => {
 };
 
 export const controllerMessageCreate = async (req: Request, res: Response) => {
-  const { content, username } = req.body;
+  const { content, sid } = req.body;
   const { id } = req.params;
   try {
-    const message = await serviceMessageCreate({ id_room: id, content, username });
+    const message = await serviceMessageCreate({ id_room: id, content, sid });
     res.status(201).json(message);
   } catch (error) {
     console.error('Database error:', error);

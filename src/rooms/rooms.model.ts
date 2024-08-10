@@ -15,9 +15,9 @@ export const getRooms = async () => {
   return rooms;
 };
 
-export const createRoom = async (username: User['username']): Promise<Room> => {
+export const createRoom = async (sid: User['sid']): Promise<Room> => {
   const repoUser = Database.getRepository(User);
-  const user = await repoUser.findOne({ where: { username } });
+  const user = await repoUser.findOne({ where: { sid } });
   const room = new Room();
   room.name = uuidv4();
   room.created_at = new Date();

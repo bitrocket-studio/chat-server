@@ -18,6 +18,6 @@ export class Message {
   room: Room;
 
   @ManyToOne(() => User, user => user.messages)
-  @JoinColumn({ name: 'username' })
+  @JoinColumn({ name: 'email' })
   user: User;
 }

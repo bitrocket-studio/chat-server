@@ -15,9 +15,9 @@ export const serviceRoomList = async () => {
   }
 };
 
-export const serviceRoomCreate = async (username: User['username']): Promise<Room> => {
+export const serviceRoomCreate = async (sid: User['sid']): Promise<Room> => {
   try {
-    const room = await createRoom(username);
+    const room = await createRoom(sid);
     SchemaRoom.parse(room);
     eventEmitter.emit('room-created', room);
     return room;
